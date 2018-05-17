@@ -25,6 +25,7 @@
 <script>
 import axios from "axios";
 import {order} from "../assets/until";
+
 export default {
       data(){
         return {
@@ -37,6 +38,7 @@ export default {
       };
       },
       methods:{
+        
         login(){
             if(this.formLabelAlign.name == "" || this.formLabelAlign.pwd == ""){
               this.$message.error('账户或密码不能为空');
@@ -45,14 +47,19 @@ export default {
                 let str = order(this.formLabelAlign)
                 axios.post(localhost,str).then((data)=>{
                   if(data.data.status === "ok"){
+                   
                       if(this.ischeck){
                         localStorage.setItem("user",this.formLabelAlign.name)
                       }else{
                         localStorage.removeItem("user")
                       }
+                    console.log(data.data)
+                    // console.log(this.$store.commit("setid",{id:data.data.user_level}))
                      this.$router.push("/zhuye")
                     sessionStorage.setItem("user",this.formLabelAlign.name)
+                    sessionStorage.setItem("id",data.data.user_level)
                   }else{
+                   
                     this.$message.error('账户或密码错误');
                   }
                 })
