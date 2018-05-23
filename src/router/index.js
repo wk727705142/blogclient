@@ -8,6 +8,7 @@ import Newpage from "@/components/Newpage"
 import Alluser from "@/components/Alluser"
 import Write_article from "@/components/Write_article"
 import Personal from "@/components/personal"
+import Shouye from "@/components/Shouye"
 Vue.use(Router)
 
 export default new Router({
@@ -22,6 +23,14 @@ export default new Router({
       name:"zhuye",
       component:Zhuye,
       children:[
+        {
+          path:"",
+          component:Shouye
+        },
+        {
+          path:"shouye",
+          component:Shouye
+        },
         {
           path:"adduser",
           component:Adduser

@@ -9,7 +9,8 @@ let store = new Vuex.Store({
         num:0,
         localhost:"http://169.254.195.25:3000/login",
         data:[],
-        id:null
+        id:null,
+        yibiao:[]
     },
     mutations:{
         getdata(state,action){
@@ -18,6 +19,9 @@ let store = new Vuex.Store({
         },
         setid(state,action){
             state.id = action.id
+        },
+        setyibiao(state,action){
+            state.yibiao = action.yibiao
         }
     },
     actions:{
@@ -31,6 +35,11 @@ let store = new Vuex.Store({
                 store.commit("getdata",{arr:data.data.aside})
                 
 
+            })
+        },
+        getyibiaopan({commit},action){
+            axios.get("http://169.254.195.25:3000/yibiao").then((data)=>{
+              commit("setyibiao",{yibiao:data.data})
             })
         }
     }
